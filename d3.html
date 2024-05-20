@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  </head>
+  <body>
+    <div>
+      <p>A</p>
+      <p>A</p>
+      <p>A</p>
+      <p>A</p>
+      <p>A</p>
+      <p>A</p>
+      <svg></svg>
+    </div>
+  </body>
+  <script>
+    const data = [1, 2, 3, 10, 10];
+    d3.select('div')
+      .selectAll('p')
+      .data(data)
+      .join((update) => update);
+
+    const t = d3.transition().duration(1000).ease(d3.easeLinear);
+    d3.select('svg')
+      .append('rect')
+      .attr('width', '400px')
+      .attr('height', '400px')
+      .style('fill', '#f4f4')
+      .transition(t)
+      .style('fill', 'blue');
+
+    d3.json('https://dummyjson.com/products').then((data) => {
+      console.log(data);
+    });
+    d3.csv('./sample.csv').then((data) => {
+      console.log(data[0].name);
+    });
+    d3.xml('./basic/sample.xml').then((data) => {
+      console.log(data);
+    });
+  </script>
+</html>

@@ -1,0 +1,84 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+      google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // Define the chart to be drawn.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Element');
+        data.addColumn('number', 'Percentage');
+        data.addRows([
+          ['Nitrogen', 0.78],
+          ['Oxygen', 0.21],
+          ['Other', 0.01],
+        ]);
+
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.PieChart(
+          document.getElementById('myPieChart')
+        );
+        chart.draw(data, null);
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Identify where the chart should be drawn. -->
+    <div id="myPieChart"></div>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bar Chart with Google Charts API</title>
+  <!-- Load Google Charts API -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // Create the data table.
+      var data = google.visualization.arrayToDataTable([
+        ['Product', 'Sales'],
+        ['Product A', 345],
+        ['Product B', 212],
+        ['Product C', 543],
+        ['Product D', 123],
+        ['Product E', 654]
+      ]);
+
+      // Set chart options
+      var options = {
+        title:"barchart",
+        animation:{
+            duration:1000,
+            easing:'out',
+            startup:true
+        },
+        hAxis:{
+            title:"",
+            minValue:10
+        }
+      };
+
+      // Instantiate and draw the chart.
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <!-- Display the chart -->
+  <div id="chart_div" style="width: 900px; height: 500px;"></div>
+</body>
+</html>
+

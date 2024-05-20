@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody id="usertable"></tbody>
+    </table>
+
+    <script>
+      var data = [
+        { id: 1, name: 'John Doe', age: 30 },
+        { id: 2, name: 'Jane Doe', age: 25 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+      ];
+
+      $(document).ready(function () {
+        var tbody = $('#usertable'); // Selecting tbody directly
+
+        $.each(data, function (index, user) {
+          var row = $('<tr></tr>');
+          $('<td></td>').text(user.id).appendTo(row);
+          $('<td></td>').text(user.name).appendTo(row);
+          $('<td></td>').text(user.age).appendTo(row);
+          row.appendTo(tbody);
+        });
+      });
+    </script>
+  </body>
+</html>

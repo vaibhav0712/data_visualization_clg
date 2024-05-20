@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Canvas</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="mycanvas" width="400px" heigth="200px"></canvas>
+    <form id="myform">
+      <input
+        type="text"
+        name="name"
+        placeholder="name"
+        class="validate[required]"
+      />
+      <input
+        type="text"
+        placeholder="password"
+        name="password"
+        class="validate[required,custom['password']]"
+      />
+      <button>submit</button>
+    </form>
+  </body>
+  <script>
+    var canvas = document.getElementById('mycanvas');
+    var ctx = canvas.getContext('2d');
+    let data = [120, 160, 175, 90, 150];
+    let currX = 50;
+    let base = 200;
+    let width = 50;
+
+    for (let i = 0; i < data.length; i++) {
+      var h = data[i];
+      ctx.fillStyle = 'orange';
+      ctx.fillRect(currX, base - h, width, h);
+      currX += width + 10;
+    }
+  </script>
+</html>

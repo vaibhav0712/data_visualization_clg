@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Hello there</h1>
+    <svg width="200px" heigth="200px">
+      <circle cx='00px' cy='100x' r="55px" />
+      <svg/>
+    <!-- <canvas id="barChartCanvas" width="400" height="300"></canvas> -->
+  </body>
+  <script>
+    // variable declarations
+    var jsonObj = {
+      sales: [
+        { region: "Northeast", employees: 150, amount: "115,000" },
+        { region: "Southeast", employees: 125, amount: "95,000" },
+        { region: "West", employees: 325, amount: "265,000" },
+      ],
+    };
+    // console.warn(jsonObj.sales[0].amount);
+    // console.log(jsonObj);
+    // console.log(JSON.stringify(jsonObj));
+
+    $(document).ready(function () {
+      console.log("Hello from jQuery");
+
+      // reading text file using jquery
+      jQuery.get("sample.txt", function (data) {
+        console.log(data);
+        var lines = data.split("\n");
+        $.each(lines, function (lineNo, line) {
+          console.log(lineNo + " : " + line);
+        });
+      });
+
+      // reading xml file
+      jQuery.ajax({
+        tyep: "GET",
+        url: "sample.xml",
+        dataType: "xml",
+        success: function (data) {
+          // console.log("data here : ", data);
+        },
+        error: function () {
+          console.log("error in xml file  ");
+        },
+      });
+
+      // reading json file
+      var territory = [];
+      var amount = [];
+      jQuery.getJSON("sample.json", function (data) {
+        // console.log(data);
+        $.each(data.sales.region, function (index, values) {
+          territory.push(values.territory);
+          amount.push(values.amount);
+        });
+
+        console.log(territory);
+        console.log(amount);
+
+        // create a bar chart for the data
+        // var ctx = document.getElementById("barChartCanvas").getContext("2d");
+        // var canvas = document.getElementById("barChartCanvas");
+        // var maxValue = Math.max.apply(null, amount);
+        // var barWidth = 30;
+        // var barGap = 20;
+        // var chartWidht = (barWidth + barGap) * amount.length;
+        // var chartHeight = canvas.height - 30;
+        // var scaleFactor = chartHeight / maxValue;
+
+        // // draw the bars
+        // for (var i = 0; i < amount.length; i++) {
+        //   var x = i * (barWidth + barGap);
+        //   var y = canvas.height - amount[i] * scaleFactor;
+        //   var height = amount[i] * scaleFactor;
+        //   drawBar(ctx, x, y, barWidth, height);
+        //   //   drawLabel(ctx, labels[i], x + barWidth / 2, canvas.height - 10);
+        // }
+
+        // function drawBar(ctx, x, y, width, height) {
+        //   ctx.fillStyle = "blue";
+        //   ctx.fillRect(x, y, width, height);
+        // }
+      });
+    });
+  </script>
+</html>
+
+

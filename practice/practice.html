@@ -1,0 +1,74 @@
+<!-- 
+
+ -->
+
+<html>
+  <head>
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <table>
+      <thead></thead>
+      <tbody calss="table"></tbody>
+    </table>
+  </body>
+  <script>
+    $(document).ready(function () {
+      var tableBody = $('thead');
+
+      // function to read and disply json
+      function readAndDisplayJson() {
+        $.getJSON('../basic/sample.json', function (data) {
+          var jsonData = data;
+          var students = jsonData.students;
+          $.each(students, function (index, value) {
+            var row = $('<tr>');
+            $('<td>').text(value.name).appendTo(row);
+            $('<td>').text(value.age).appendTo(row);
+            row.appendTo(tableBody);
+          });
+        });
+      }
+
+      // function to read and disply xml
+      function readXmlAndDisplay() {
+        $.ajax({
+          type: 'GET',
+          url: '../basic/sample.xml',
+          dataType: 'xml',
+          success: function (xmlData) {
+            console.log(xmlData);
+            $(xmlData)
+              .find('Book')
+              .each(function (index, value) {
+                var bookTitle = $(value).find('Title').text();
+                console.log(bookTitle);
+                var row = $('<tr>');
+                $('<td>').text(bookTitle).appendTo(row);
+                row.appendTo(tableBody);
+              });
+          },
+        });
+      }
+
+      // function to read csv and display
+      function readCsvAndDisplay() {
+        $.get('/sample.csv', function (data) {
+          var lines = data.split('\n');
+          $.each(lines, function (index, value) {
+            var column = value.split(',');
+            var row = $('<tr>');
+            $('<td>').text(column[0]).appendTo(row);
+            $('<td>').text(column[1]).appendTo(row);
+            row.appendTo(tableBody);
+          });
+        });
+      }
+
+      //   readCsvAndDisplay();
+      readXmlAndDisplay();
+      //   readAndDisplayJson();
+    });
+  </script>
+</html>

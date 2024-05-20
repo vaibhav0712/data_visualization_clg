@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"
+    />
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody id="usertable"></tbody>
+    </table>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      var data = [
+        { id: 1, name: 'John Doe', age: 30 },
+        { id: 2, name: 'Jane Doe', age: 25 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+        { id: 3, name: 'Jim Doe', age: 20 },
+      ];
+
+      $(document).ready(function () {
+        var tbody = $('#usertable'); // Selecting tbody directly
+
+        $.each(data, function (index, user) {
+          var row = $('<tr></tr>');
+          $('<td></td>').text(user.id).appendTo(row);
+          $('<td></td>').text(user.name).appendTo(row);
+          $('<td></td>').text(user.age).appendTo(row);
+          row.appendTo(tbody);
+        });
+
+        // $('<td>').onmouseover(function(){
+        // $(this).css("background-color":"red")
+        // })
+
+        $('table').DataTable({});
+        $('td').mouseover(function () {
+          $(this).css('color', 'red').css('background-color', '#f4f4');
+        });
+
+        $('td').mouseout(function () {
+          $(this).css('color', 'black').css('background-color', 'white');
+        });
+
+        // reading csv
+        // $.get('Position_Salaries.csv', function (data) {
+        //   var data = data.split('\n');
+        //   $.each(data, function (index, value) {
+        //     var row = value.split(',');
+        //     $.each(row, function (index, value) {
+        //       console.log(value);
+        //     });
+        //   });
+        //   console.log(data);
+        // });
+      });
+    </script>
+  </body>
+</html>

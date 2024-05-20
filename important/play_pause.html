@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+    <style>
+      button {
+        padding: 5px 10px;
+        width: 100px;
+        height: 40px;
+        border: 1px solid white;
+        border-radius: 25px;
+        margin: 0.5rem 1rem;
+      }
+      #play {
+        background-color: green;
+      }
+      #pause {
+        background-color: red;
+      }
+      .new {
+        background-color: orange;
+      }
+      button:hover {
+        opacity: 0.5;
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <button id="play">play</button>
+    <button id="pause">pause</button>
+    <div></div>
+    <div></div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      var isPlaying = false;
+      var customInterval;
+      //play function
+      function playButton() {
+        isPlaying = true;
+        let count = 0;
+
+        console.log('playing....');
+
+        customInterval = setInterval(function () {
+          console.log(count++);
+        }, 500);
+      }
+      // pause function
+      function pauseButton() {
+        isPlaying = false;
+
+        console.log('playing stoped....');
+        clearInterval(customInterval);
+      }
+
+      // event listen
+      $('#play').click(function () {
+        if (!isPlaying) {
+          playButton();
+        }
+      });
+
+      $('#pause').click(function () {
+        if (isPlaying) {
+          pauseButton();
+        }
+      });
+
+      // adding button on the go
+      $('div').html('<button>Dynamic</button>');
+      $('div button').addClass('new').css('color', 'white');
+    });
+  </script>
+</html>
